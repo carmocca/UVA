@@ -5,11 +5,11 @@ MEMOIZATION_SIZE = 1000000
 cycle_len = [0] * MEMOIZATION_SIZE
 
 
-def f(input):
-    n = input
+def f(n_input):
+    n = n_input
     length = 1
     while n != 1:
-        if n < MEMOIZATION_SIZE and cycle_len[0] > 0:
+        if n < MEMOIZATION_SIZE and cycle_len[n] > 0:
             length = cycle_len[n] - 1
             n = 1 # break
         else:
@@ -23,7 +23,7 @@ def f(input):
 
 
 def solve(x, y):
-    if (x > y): (x, y) = (y, x)
+    if x > y: (x, y) = (y, x)
     max_length = 0
     for i in range(x, y + 1):
         length = f(i)
@@ -32,7 +32,6 @@ def solve(x, y):
 
 
 if __name__ == '__main__':
-    print(solve())
     for line in sys.stdin:
         (x, y) = [int(x) for x in line.split()]
         max_cycle_length = solve(x, y)
