@@ -31,8 +31,14 @@ def solve(x, y):
     return max_length
 
 
-if __name__ == '__main__':
-    for line in sys.stdin:
+def main(file):
+    res = []
+    for line in file:
         (x, y) = [int(x) for x in line.split()]
         max_cycle_length = solve(x, y)
-        print("{} {} {}".format(x, y, max_cycle_length))
+        res.append("{} {} {}\n".format(x, y, max_cycle_length))
+    return res
+
+
+if __name__ == '__main__':
+    print(''.join(main(sys.stdin)), end='')
