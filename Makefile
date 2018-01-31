@@ -1,6 +1,3 @@
-init:
-	pip install -r requirements.txt
-
 test:
 	python3 ./N00100/test.py
 	python3 ./N10142/test.py
