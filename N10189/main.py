@@ -1,54 +1,48 @@
 import sys
 
-matrix = [[0 for x in range(100)] for y in range(100)]
+
+def get_neighbours(row, col, rows, cols):
+    neighbours = []
+    for i in range(-1, 2):
+        for j in range(-1, 2):
+            if i == 0 and j == 0:
+                continue
+            elif -1 < row + i < rows and -1 < col + j < cols:
+                neighbours.append((row + i, col + j))
+    return neighbours
 
 
-def solve(n, m):
+def solve(field, rows, cols):
     res = []
-    for i in range(n):
+    for i in range(rows):
         line = ''
-        for j in range(m):
-            if matrix[i][j] == 1:
+        for j in range(cols):
+            if field[i][j] == 1:
                 line += '*'
                 continue
-            mines = 0
-            if j > 0 and i > 0 and matrix[i - 1][j - 1] == 1:
-                mines += 1
-            if j > 0 and matrix[i][j - 1] == 1:
-                mines += 1
-            if j > 0 and i < n and matrix[i + 1][j - 1] == 1:
-                mines += 1
-            if i > 0 and matrix[i - 1][j] == 1:
-                mines += 1
-            if i < n and matrix[i + 1][j] == 1:
-                mines += 1
-            if j < m and i > 0 and matrix[i - 1][j + 1] == 1:
-                mines += 1
-            if j < m and matrix[i][j + 1] == 1:
-                mines += 1
-            if j < m and i < n and matrix[i + 1][j + 1] == 1:
-                mines += 1
+            neighbours = get_neighbours(i, j, rows, cols)
+            mines = sum(field[row][col] for (row, col) in neighbours)
             line += str(mines)
         res.append(line + '\n')
-
     return res
 
 
 def main(file):
     res = []
-    field = 1
+    field_num = 1
     while True:
-        (n, m) = [int(x) for x in file.readline().split()]
-        if n == m == 0: break
+        (rows, cols) = [int(x) for x in file.readline().split()]
+        if rows == cols == 0: break
+        field = [[0 for col in range(cols)] for row in range(rows)]
 
-        for i in range(n):
+        for i in range(rows):
             for j, char in enumerate(file.readline()):
                 if char == '*':
-                    matrix[i][j] = 1
-        res.append("Field #{}:\n".format(field))
-        res.extend(solve(n , m))
+                    field[i][j] = 1
+        res.append("Field #{}:\n".format(field_num))
+        res.extend(solve(field, rows , cols))
         res.append("\n")
-        field += 1
+        field_num += 1
 
     return res[0: -1]
 
