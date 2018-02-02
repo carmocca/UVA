@@ -2,12 +2,10 @@ import unittest
 import os
 from main import *
 
-
-dir = os.path.dirname(__file__)
+dir = os.path.dirname(os.path.abspath(__file__))
 
 
 class Tests(unittest.TestCase):
-
     def test_1(self):
         self.assertEqual(solve(1, 10), 20)
 

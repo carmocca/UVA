@@ -2,12 +2,10 @@ import unittest
 import os
 from main import *
 
-
-dir = os.path.dirname(__file__)
+dir = os.path.dirname(os.path.abspath(__file__))
 
 
 class Tests(unittest.TestCase):
-
     def test_solve(self):
         candidates = ['John Doe', 'Jane Smith', 'Jane Austen']
         ballots = [[1, 2, 3], [2, 1, 3], [2, 3, 1], [1, 2, 3], [3, 1, 2]]
