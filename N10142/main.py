@@ -5,8 +5,8 @@ def get_first_choices(ballots):
     return [b[0] for b in ballots]
 
 
-def get_points(choices):
-    return {c: choices.count(c) for c in set(choices)}
+def get_points(candidate_num, choices):
+    return {c: choices.count(c) for c in range(1, candidate_num + 1)}
 
 
 def get_winner(points):
@@ -24,26 +24,22 @@ def remove_losers(ballots, losers):
     return [[c for c in b if c not in losers] for b in ballots]
 
 
-def update_points(points, losers, ballots):
+def update_points(points, losers, ballots, choices):
     for loser in losers:
         del points[loser]
-
     '''
     Update the points incrementally. For each
     first choice loser increment the score of the next
     non-loser candidate
     '''
-    for next_choices in [b[1:] for b in ballots if b[0] in losers]:
-        for candidate in next_choices:
-            if candidate in points:
-                points[candidate] += 1
-                break
+    for next_choice in [ballots[i][0] for i, c in enumerate(choices) if c in losers]:
+        points[next_choice] += 1
 
 
 def solve(candidates, b):
     ballots = b
     choices = get_first_choices(ballots)
-    points = get_points(choices)
+    points = get_points(len(candidates), choices)
     while True:
         winner, max_points = get_winner(points)
         if max_points > sum(points.values()) / 2:  # Winner
@@ -53,8 +49,8 @@ def solve(candidates, b):
         if max_points == min_points:  # Tied
             return [candidates[i - 1] for i in losers]
 
-        update_points(points, losers, ballots)
         ballots = remove_losers(ballots, losers)
+        update_points(points, losers, ballots, choices)
         choices = get_first_choices(ballots)
 
 
@@ -73,7 +69,6 @@ def main(file):
         for candidate in solve(candidates, ballots):
             res.append(candidate + '\n')
         res.append('\n')
-    res[-2] = res[-2].rstrip()  # Remove last newline
     return res[0: -1]
 
 
