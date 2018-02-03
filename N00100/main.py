@@ -1,7 +1,6 @@
 import sys
 
-MEMOIZATION_SIZE = 1000000
-cycle_len = [0] * MEMOIZATION_SIZE
+cycle_len = {}
 
 
 def collatz(n):
@@ -12,16 +11,15 @@ def collatz(n):
 
 
 def get_cycle_length(n_input):
+    global cycle_len
     n = n_input
     length = 1
+    if n in cycle_len:
+        return cycle_len[n]
     while n != 1:
-        if n < MEMOIZATION_SIZE and cycle_len[n] > 0:
-            length = cycle_len[n] - 1
-            n = 1  # break
-        else:
-            n = collatz(n)
-            length += 1
-    cycle_len[n] = length
+        n = collatz(n)
+        length += 1
+    cycle_len[n_input] = length
     return length
 
 
