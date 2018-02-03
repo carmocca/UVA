@@ -8,10 +8,11 @@ The purpose of this repository is to solve multiple challenges for the course "A
 
 <center>
 
-| ID | Title | Status | Annotations |
-|:--:|:-----:|:------:|:-----------:|
-| [100](./N00100) | The 3n + 1 Problem | Time limit exceeded | Local tests passed
-| [10142](./N10142) | Australian Voting | Accepted
-| [10189](./N10189) | Minesweeper | Accepted
+| ID | Title | Level | Status | Annotations |
+|:--:|:-----:|:-----:|:------:|:-----------:|
+| [100](./N00100) | The 3n + 1 Problem | 1 | Accepted
+| [10142](./N10142) | Australian Voting | 1 | Accepted
+| [10189](./N10189) | Minesweeper | 1 | Accepted
+| [10033](./N10033) | Interpreter | 2 | Time limit exceeded
 
 </center>
