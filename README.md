@@ -15,5 +15,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10189](./N10189) | Minesweeper | 1 | Accepted
 | [10033](./N10033) | Interpreter | 2 | Accepted
 | [10315](./N10315) | Poker Hands | 2 | Accepted
+| [10050](./N10050) | Hartals | 2 | Accepted
 
 </center>
