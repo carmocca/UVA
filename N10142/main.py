@@ -42,7 +42,7 @@ def solve(candidates, b):
     points = get_points(len(candidates), choices)
     while True:
         winner, max_points = get_winner(points)
-        if max_points > sum(points.values()) / 2:  # Winner
+        if 2 * max_points > sum(points.values()):  # Winner
             return [candidates[winner - 1]]
 
         losers, min_points = get_losers(points)
