@@ -15,11 +15,22 @@ def build_graph(papers):
     adjacency_matrix.setdefault('Erdos P.', [])
 
 
-def calculate_erdos(names):
-    erdos_numbers.setdefault('Erdos P.', 0)
-    for name in names:
-        # TODO: BFS from Erdos
-        pass
+def calculate_erdos():
+    global erdos_numbers
+    erdos_numbers.setdefault('Erdos, P.', 0)
+    visited = ['Erdos, P.']
+    not_visited = adjacency_matrix['Erdos, P.']
+    number = 1
+    while len(not_visited) > 0:
+        next_names = []
+        for name in not_visited:
+            erdos_numbers[name] = number
+            visited.append(name)
+            next_names += [n for n in adjacency_matrix[name] if n not in visited]
+        number += 1
+        not_visited = next_names
+
+
 
 
 # TODO: Delete
@@ -41,15 +52,11 @@ def main(file):
         # Split every two commas
         papers = [zip(*[iter(p.split(','))]*2) for p in papers]
         # Join zip tuples and trim
-        papers = [[''.join(a).strip() for a in p] for p in papers]
+        papers = [[','.join(a).strip() for a in p] for p in papers]
         build_graph(papers)
 
-        print_dict(adjacency_matrix)
-
         names = [file.readline().rstrip() for _ in range(n)]
-        calculate_erdos(names)
-
-        print_dict(erdos_numbers)
+        calculate_erdos()
 
         for name in names:
             res.append('{} {}\n'.format(
