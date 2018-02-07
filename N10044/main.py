@@ -1,43 +1,30 @@
 import sys
 
-
-# TODO: Use trie?
-adjacency_matrix = {}
+graph = {}
 erdos_numbers = {}
+ERDOS = 'Erdos, P.'
 
 
 def build_graph(papers):
-    global adjacency_matrix
+    global graph
     for paper in papers:
         for author in paper:
-            adjacency_matrix.setdefault(author, [])
-            adjacency_matrix[author].extend(a for a in paper if a != author)
-    adjacency_matrix.setdefault('Erdos P.', [])
+            graph.setdefault(author, set()) \
+                 .update(a for a in paper if a != author)
+    graph.setdefault(ERDOS, set())
 
 
 def calculate_erdos():
     global erdos_numbers
-    erdos_numbers.setdefault('Erdos, P.', 0)
-    visited = ['Erdos, P.']
-    not_visited = adjacency_matrix['Erdos, P.']
-    number = 1
-    while len(not_visited) > 0:
-        next_names = []
-        for name in not_visited:
-            erdos_numbers[name] = number
-            visited.append(name)
-            next_names += [n for n in adjacency_matrix[name] if n not in visited]
-        number += 1
-        not_visited = next_names
-
-
-
-
-# TODO: Delete
-def print_dict(d):
-    for key, value in d.items():
-        print('"{}" -> {}'.format(key, value))
-    print()
+    # BFS
+    visited, queue = set(), [(ERDOS, -1)]
+    while queue:
+        author, distance = queue.pop(0)
+        if author not in visited:
+            visited.add(author)
+            erdos_numbers[author] = distance + 1
+            for connected_author in graph[author] - visited:
+                queue.append((connected_author, distance + 1))
 
 
 def main(file):
@@ -50,7 +37,7 @@ def main(file):
         # Remove paper titles
         papers = [file.readline().split(':', 1)[0] for _ in range(p)]
         # Split every two commas
-        papers = [zip(*[iter(p.split(','))]*2) for p in papers]
+        papers = [zip(*[iter(p.split(','))] * 2) for p in papers]
         # Join zip tuples and trim
         papers = [[','.join(a).strip() for a in p] for p in papers]
         build_graph(papers)
@@ -59,8 +46,7 @@ def main(file):
         calculate_erdos()
 
         for name in names:
-            res.append('{} {}\n'.format(
-                name, erdos_numbers.get(name, 'infinity')))
+            res.append('{} {}\n'.format(name, erdos_numbers.get(name, 'infinity')))
     return res
 
 
@@ -68,4 +54,3 @@ if __name__ == '__main__':
     res = main(sys.stdin)
     for line in res:
         print(line, end='')
-
