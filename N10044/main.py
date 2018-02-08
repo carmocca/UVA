@@ -1,6 +1,7 @@
 import sys
+import collections
 
-graph = {}
+graph = collections.defaultdict(set)
 erdos_numbers = {}
 ERDOS = 'Erdos, P.'
 
@@ -9,9 +10,7 @@ def build_graph(papers):
     global graph
     for paper in papers:
         for author in paper:
-            graph.setdefault(author, set()) \
-                 .update(a for a in paper if a != author)
-    graph.setdefault(ERDOS, set())
+            graph[author].update(a for a in paper if a != author)
 
 
 def calculate_erdos():

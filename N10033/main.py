@@ -56,7 +56,7 @@ def main(file):
     res = []
     cases = int(file.readline())
     file.readline()
-    for case in range(cases):
+    for _ in range(cases):
         registers = [0] * 10
         RAM = [0] * 1000
         for i in range(1000):

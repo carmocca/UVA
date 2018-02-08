@@ -58,7 +58,7 @@ def main(file):
     res = []
     cases = int(file.readline())
     file.readline()
-    for case in range(cases):
+    for _ in range(cases):
         n = int(file.readline())
         candidates = [file.readline().rstrip() for c in range(n)]
         ballots = []
