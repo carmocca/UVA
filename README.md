@@ -17,5 +17,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10315](./N10315) | Poker Hands | 2 | Accepted
 | [10050](./N10050) | Hartals | 2 | Accepted
 | [10044](./N10044) | Erdös Numbers | 2 | Accepted
+| [843](./N00843) | Crypt Kicker | 2 | | Work in progress
 
 </center>
