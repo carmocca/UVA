@@ -18,6 +18,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10050](./N10050) | Hartals | 2 | Accepted
 | [10044](./N10044) | Erdös Numbers | 2 | Accepted
 | [843](./N00843) | Crypt Kicker | 2 | Time limit exceeded | Local test passed
-| [10010](./10010) \ Where's Waldorf? | 2 | Accepted
+| [10010](./10010) | Where's Waldorf? | 2 | Accepted
 
 </center>
