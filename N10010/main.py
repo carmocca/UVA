@@ -1,74 +1,41 @@
 import sys
 
-def upleft(i, j, letters, w):
-    for k in range(1, len(w)):
-        if i-k < 0 or j-k < 0 or letters[i-k][j-k] != w[k]:
-            return False
-    return True
+RIGHT = (1, 0)
+LEFT = (-1, 0)
+UP = (0, 1)
+DOWN = (0, -1)
+UPPERRIGHT = (1, 1)
+UPPERLEFT = (-1, 1)
+LOWERRIGHT = (1, -1)
+LOWERLEFT = (-1, -1)
+DIRECTIONS = [RIGHT, LEFT, UP, DOWN, UPPERRIGHT, UPPERLEFT, LOWERRIGHT, LOWERLEFT]
 
-def up(i, j, letters, w):
-    for k in range(1, len(w)):
-        if i-k < 0 or letters[i-k][j] != w[k]:
-            return False
-    return True
 
-def upright(i, j, letters, w):
-    for k in range(1, len(w)):
-        if i-k < 0 or j+k >= len(letters[i]) or letters[i-k][j+k] != w[k]:
-            return False
-    return True
-
-def left(i, j, letters, w):
-    for k in range(1, len(w)):
-        if j-k < 0 or letters[i][j-k] != w[k]:
-            return False
-    return True
-
-def right(i, j, letters, w):
-    for k in range(1, len(w)):
-        if j+k >= len(letters[i]) or letters[i][j+k] != w[k]:
-            return False
-    return True
-
-def downleft(i, j, letters, w):
-    for k in range(1, len(w)):
-        if i+k >= len(letters) or j-k < 0 or letters[i+k][j-k] != w[k]:
-            return False
-    return True
-
-def down(i, j, letters, w):
-    for k in range(1, len(w)):
-        if i+k >= len(letters) or letters[i+k][j] != w[k]:
-            return False
-    return True
-
-def downright(i, j, letters, w):
-    for k in range(1, len(w)):
-        if i+k >= len(letters) or j+k >= len(letters[i]) or letters[i+k][j+k] != w[k]:
-            return False
-    return True
-
-def match(i, j, letters, word):
-    w = list(word)
-    if letters[i][j] != w[0]:
+def match(row, col, grid, word, rows, cols):
+    if grid[row][col] != word[0]:
         return False
-    return upleft(i, j, letters, w) or up(i, j, letters, w) or upright(i, j, letters, w) or \
-            left(i, j, letters, w) or right(i, j, letters, w) or \
-            downleft(i, j, letters, w) or down(i, j, letters, w) or downright(i, j, letters, w)
+    for direction in DIRECTIONS:
+        x, y = direction
+        for i in range(len(word)):
+            r = row + y * i
+            c = col + x * i
+            if c < 0 \
+               or c >= cols \
+               or r < 0 \
+               or r >= rows \
+               or grid[r][c] != word[i]:
+                break
+        else:
+            # No breaks happened during the iteration
+            return True
 
 
-def solve(m, n, letters, words):
-    res = [(0,0)] * len(words)
-    solved = []
-    for i in range(m):
-        for j in range(n):
-            for k, word in enumerate(words):
-                if res[k] == (0,0):
-                    ocurrence = match(i, j, letters, word)
-                    if ocurrence:
-                        res[k] = (i+1, j+1)
-                        solved.append(word)
-    return res
+def solve(rows, cols, grid, word):
+    for row in range(rows):
+        for col in range(cols):
+            ocurrence = match(row, col, grid, word, rows, cols)
+            if ocurrence:
+                return row + 1, col + 1
 
 
 def main(file):
@@ -77,14 +44,15 @@ def main(file):
     file.readline()
     for _ in range(cases):
         m, n = [int(x) for x in file.readline().split()]
-        letters = [[letter.lower() for letter in list(file.readline().rstrip())] for _ in range(m)]
+        grid = [file.readline().rstrip().lower() for _ in range(m)]
         n_words = int(file.readline())
         words = [file.readline().rstrip().lower() for _ in range(n_words)]
         file.readline()
-        for ocurrence in solve(m, n, letters, words):
-            res.append('{} {}\n'.format(ocurrence[0], ocurrence[1]))
+        for word in words:
+            x, y = solve(m, n, grid, word)
+            res.append('{} {}\n'.format(x, y))
         res.append('\n')
-    return res[0: -1]
+    return res[0:-1]
 
 
 if __name__ == '__main__':
