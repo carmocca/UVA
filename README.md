@@ -17,7 +17,8 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10315](./N10315) | Poker Hands | 2 | Accepted
 | [10050](./N10050) | Hartals | 2 | Accepted
 | [10044](./N10044) | Erdös Numbers | 2 | Accepted
-| [843](./N00843) | Crypt Kicker | 2 | Accepted |
-| [10010](./10010) | Where's Waldorf? | 2 | Accepted
+| [843](./N00843) | Crypt Kicker | 2 | Accepted
+| [10010](./N10010) | Where's Waldorf? | 2 | Accepted
+| [850](./N00850) | Crypt Kicker II | 2 |  | Work in progress
 
 </center>
