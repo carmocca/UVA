@@ -26,19 +26,23 @@ def backtracking(dictionary, encoded_words, decodings_input):
         if not match or not decodings:
             continue
         if len(encoded_words) == 1:  # End
-            return [word]
+            return {encoded: word}
         sol = backtracking(dictionary, encoded_words[1:], decodings)
         if sol:
-            return [word] + sol
+            sol.update({encoded: word})
+            return sol
     return None
 
 
 def solve(dictionary, encoded_words):
     characters = [c for l in [list(e) for e in encoded_words] for c in l]
     decodings = {ch: None for ch in set(characters)}
-    res = backtracking(dictionary, encoded_words, decodings)
-    if not res:
-        res = ['*' * len(e) for e in encoded_words]
+    '''
+    We can prune the backtracking tree by sorting the words by
+    decreasing length, so that each word decodes more characters
+    '''
+    res = backtracking(dictionary, sorted(encoded_words, key=len, reverse=True), decodings)
+    res = ['*' * len(e) for e in encoded_words] if not res else [res[e] for e in encoded_words]
     return ' '.join(res)
 
 
@@ -53,7 +57,6 @@ def main(file):
     for _ in range(n):
         word = file.readline().rstrip()
         dictionary[len(word)].append(word)
-
     for line in file:
         encoded_words = line.rstrip().split()
         res.append(solve(dictionary, encoded_words) + '\n')
