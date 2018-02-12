@@ -40,8 +40,10 @@ def solve(dictionary, encoded_words):
     '''
     We can prune the backtracking tree by sorting the words by
     decreasing length, so that each word decodes more characters
+    as well as removing duplicates
     '''
-    res = backtracking(dictionary, sorted(encoded_words, key=len, reverse=True), decodings)
+    ew_sorted = sorted(set(encoded_words), key=len, reverse=True)
+    res = backtracking(dictionary, ew_sorted, decodings)
     res = ['*' * len(e) for e in encoded_words] if not res else [res[e] for e in encoded_words]
     return ' '.join(res)
 
