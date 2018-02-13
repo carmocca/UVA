@@ -8,8 +8,8 @@ The purpose of this repository is to solve multiple challenges for the course "A
 
 <center>
 
-| ID | Title | Level | Status | Annotations |
-|:--:|:-----:|:-----:|:------:|:-----------:|
+| ID | Title | Level | Status |
+|:--:|:-----:|:-----:|:------:|
 | [100](./N00100) | The 3n + 1 Problem | 1 | Accepted
 | [10142](./N10142) | Australian Voting | 1 | Accepted
 | [10189](./N10189) | Minesweeper | 1 | Accepted
@@ -19,7 +19,7 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10044](./N10044) | Erdös Numbers | 2 | Accepted
 | [843](./N00843) | Crypt Kicker | 2 | Accepted
 | [10010](./N10010) | Where's Waldorf? | 2 | Accepted
-| [850](./N00850) | Crypt Kicker II | 2 |  | Work in progress
+| [850](./N00850) | Crypt Kicker II | 2 | Work in progress
 | [120](./N00120) | Stacks of Flapjacks | 2 | Work in progress
 
 </center>
