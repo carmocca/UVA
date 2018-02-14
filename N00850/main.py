@@ -3,27 +3,20 @@ import sys
 KNOWN_PHRASE = 'the quick brown fox jumps over the lazy dog'
 
 
-def find_known_phrase(lines):
-    for line in lines:
-        if len(line) != len(KNOWN_PHRASE) or len(set(line)) != len(set(KNOWN_PHRASE)):
+def solve(phrases):
+    for phrase in phrases:
+        if len(phrase) != len(KNOWN_PHRASE):
             continue
-        for encoded, decoded in zip(line, KNOWN_PHRASE):
-            if encoded != ' ' != decoded:
-                return line
-    return None
-
-
-def get_decoding_mappings(line):
-    return {encoded: decoded for encoded, decoded in zip(line, KNOWN_PHRASE)}
-
-
-def solve(lines):
-    encoded_phrase = find_known_phrase(lines)
-    if not encoded_phrase:
-        return ['No solution.']
-    mappings = get_decoding_mappings(encoded_phrase)
-    print(encoded_phrase, lines, mappings, '\n')
-    return [''.join(mappings[c] for c in line) for line in lines]
+        mappings = {}
+        for encoded, decoded in zip(phrase, KNOWN_PHRASE):
+            if encoded != ' ' == decoded \
+               or encoded in mappings \
+               and decoded != mappings[encoded]:
+                break
+            mappings[encoded] = decoded
+        else:
+            return [''.join(mappings[c] for c in p) for p in phrases]
+    return ['No solution.']
 
 
 def main(file):
@@ -31,12 +24,12 @@ def main(file):
     cases = int(file.readline())
     file.readline()
     for _ in range(cases):
-        lines = []
+        phrases = []
         for line in file:
             if line == '\n':
                 break
-            lines.append(line.rstrip())
-        res = [l + '\n' for l in solve(lines)]
+            phrases.append(line.rstrip())
+        res.extend(l + '\n' for l in solve(phrases))
         res.append('\n')
     return res[0:-1]
 
