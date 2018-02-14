@@ -20,6 +20,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [843](./N00843) | Crypt Kicker | 2 | Accepted
 | [10010](./N10010) | Where's Waldorf? | 2 | Accepted
 | [850](./N00850) | Crypt Kicker II | 2 | Accepted
-| [120](./N00120) | Stacks of Flapjacks | 2 | Work in progress
+| [120](./N00120) | Stacks of Flapjacks | 2 | Accepted
 
 </center>
