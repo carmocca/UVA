@@ -50,6 +50,4 @@ def main(file):
 
 
 if __name__ == '__main__':
-    res = main(sys.stdin)
-    for line in res:
-        print(line, end='')
+    print(''.join(main(sys.stdin)), end='')
