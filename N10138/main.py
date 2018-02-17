@@ -1,6 +1,4 @@
 import sys
-import pprint
-import collections
 
 
 class Car:
@@ -29,7 +27,7 @@ class Car:
                 enter = True
             if enter and record.action == "exit":
                 km = abs(km - int(record.km))
-                bill += fare/100 * km + 1.0
+                bill += fare / 100 * km + 1.0
                 valid_bill = True
                 enter = False
         if not valid_bill:
@@ -50,16 +48,17 @@ class Record:
 
 cars = {}
 
+
 def solve(fares, records):
     global cars
     res = []
     for record in records:
         cars.setdefault(record[0], Car(record[0])).add_record(record[1:])
-    for plate in sorted(cars.keys(), key=lambda x:x.lower()):
+    for plate in sorted(cars.keys(), key=lambda x: x.lower()):
         cars[plate].order_records()
         bill = cars[plate].calculate_bill(fares)
-        if bill != 0.0:
-            res.append(plate + " $" + "{0:.2f}".format(round(bill,2)))
+        if bill:
+            res.append(plate + " $" + "{0:.2f}".format(round(bill, 2)))
     cars.clear()
     return res
 
@@ -69,19 +68,18 @@ def main(file):
     cases = int(file.readline())
     file.readline()
     for _ in range(cases):
-        fares = [int(x) for x in file.readline().split()]
+        fares = [int(f) for f in file.readline().split()]
         records = []
         while True:
-            record = [x.replace(':', '') for x in file.readline().rstrip().split()]
+            record = [x.replace(':', '') for x in file.readline().split()]
             if len(record) == 0:
                 break
             records.append(record)
         bills = solve(fares, records)
-        for bill in bills:
-            res.append(bill + '\n')
-        if len(bills) != 0:
-            res.append('\n')
-    return res[0:-1]
+        res.extend(bill + '\n' for bill in bills)
+        res.append('\n')
+    return res[:-1]
+
 
 if __name__ == '__main__':
     print(''.join(main(sys.stdin)), end='')
