@@ -1,11 +1,14 @@
 import sys
+import collections
+
+Order = collections.namedtuple('Order', ['time', 'penalty'])
 
 
-def solve(jobs):
-    return [tup[0]
-            for tup in sorted(
-                [(i + 1, v) for i, v in enumerate(jobs)],
-                key=lambda x: x[1][0] / x[1][1])]
+def solve(orders):
+    return [idx
+            for idx, order in sorted(
+                [(idx + 1, order) for idx, order in enumerate(orders)],
+                key=lambda order: order[1].time / order[1].penalty)]
 
 
 def main(file):
@@ -14,8 +17,8 @@ def main(file):
     file.readline()
     for _ in range(cases):
         n = int(file.readline())
-        jobs = [tuple(int(x) for x in file.readline().split()) for _ in range(n)]
-        res.append(' '.join(str(x) for x in solve(jobs)) + '\n')
+        orders = [Order(*map(int, file.readline().split())) for _ in range(n)]
+        res.append(' '.join(map(str, solve(orders))) + '\n')
         res.append('\n')
         file.readline()
     return res[:-1]
