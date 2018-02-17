@@ -23,5 +23,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [120](./N00120) | Stacks of Flapjacks | 2 | Accepted
 | [10152](./N10152) | ShellSort | 2 | Accepted
 | [10138](./N10138) | CDVII | 2 | Wrong answer
+| [10037](./N10037) | Bridge | 3 | Accepted
 
 </center>
