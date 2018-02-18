@@ -1,14 +1,13 @@
 import sys
-from math import factorial
 
 def solve(n):
     res = 1
     # Number of lines
-    if n > 1:
-        res += (n * (n - 1)) / 2
+    if n > 0:
+        res += (n * (n - 1)) // 2
     #Number of intersections
-    if n > 4:
-        res += factorial(n) / (factorial(4) * factorial(n-4))
+    if n > 2:
+        res += ((n-3) * (n-2) * (n-1) * n) // 24
     return int(res)
 
 def main(file):

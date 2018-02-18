@@ -27,6 +27,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10026](./N10026) | Shoemaker's Problem | 2 | Accepted
 | [10127](./N10127) | Ones | 2 | Accepted
 | [847](./N00847) | A Multiplication Game | 3 | Accepted
-| [10213](./N10213) | How Many Pieces of Land? | 2 | Time limit exceeded
+| [10213](./N10213) | How Many Pieces of Land? | 2 | Accepted
 
 </center>
