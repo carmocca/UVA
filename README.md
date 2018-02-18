@@ -25,7 +25,7 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10138](./N10138) | CDVII | 2 | Wrong answer
 | [10037](./N10037) | Bridge | 3 | Accepted
 | [10026](./N10026) | Shoemaker's Problem | 2 | Accepted
-| [10026](./N10127) | Ones | 2 | Accepted
+| [10127](./N10127) | Ones | 2 | Accepted
 | [847](./N00847) | A Multiplication Game | 3 | Accepted
 
 </center>
