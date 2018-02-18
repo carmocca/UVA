@@ -21,7 +21,7 @@ class Car:
         valid_bill = False
         enter = False
         for record in self.records:
-            if not enter and record.action == "enter":
+            if record.action == "enter":
                 fare = fares[int(record.timestamp[4:6])]
                 km = int(record.km)
                 enter = True

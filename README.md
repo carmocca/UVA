@@ -22,7 +22,7 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [850](./N00850) | Crypt Kicker II | 2 | Accepted
 | [120](./N00120) | Stacks of Flapjacks | 2 | Accepted
 | [10152](./N10152) | ShellSort | 2 | Accepted
-| [10138](./N10138) | CDVII | 2 | Wrong answer
+| [10138](./N10138) | CDVII | 2 | Accepted
 | [10037](./N10037) | Bridge | 3 | Accepted
 | [10026](./N10026) | Shoemaker's Problem | 2 | Accepted
 | [10127](./N10127) | Ones | 2 | Accepted
