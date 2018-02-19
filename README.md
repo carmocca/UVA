@@ -28,5 +28,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10127](./N10127) | Ones | 2 | Accepted
 | [847](./N00847) | A Multiplication Game | 3 | Accepted
 | [10213](./N10213) | How Many Pieces of Land? | 2 | Accepted
+| [10198](./N10198) | Counting | 2 | Accepted
 
 </center>
