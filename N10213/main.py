@@ -1,22 +1,13 @@
 import sys
 
+
 def solve(n):
-    res = 1
-    # Number of lines
-    if n > 0:
-        res += (n * (n - 1)) // 2
-    #Number of intersections
-    if n > 2:
-        res += ((n-3) * (n-2) * (n-1) * n) // 24
-    return int(res)
+    return (n**4 - 6 * n**3 + 23 * n**2 - 18 * n + 24) // 24
+
 
 def main(file):
-    res = []
-    cases = int(file.readline())
-    for _ in range(cases):
-        n = int(file.readline())
-        res.append(str(solve(n)) + '\n')
-    return res
+    file.readline()
+    return ['{}\n'.format(solve(int(line))) for line in file]
 
 
 if __name__ == '__main__':
