@@ -1,21 +1,16 @@
 import sys
 
 
-def append_1(n):
-    return int(str(n) + '1')
-
-
 def solve(n):
-    p = 1
-    while n > p:
-        p = append_1(p)
-    digits = len(str(p))
-    while p > 0:
-        while n > p:
-            p = append_1(p)
-            digits += 1
-        p %= n
-    return digits
+    p = n
+    cont = 1
+    while p != 1:
+        if p % 10 == 1:
+            p = (p - 1) // 10
+            cont += 1
+        else:
+            p += n
+    return cont
 
 
 def main(file):
