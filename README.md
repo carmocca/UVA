@@ -30,5 +30,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10213](./N10213) | How Many Pieces of Land? | 2 | Accepted
 | [10198](./N10198) | Counting | 2 | Accepted
 | [10049](./N10049) | Self-Describing Sequence | 2 | Work in progress
+| [00846](./N00846) | Steps | 2 | Work in progress
 
 </center>
