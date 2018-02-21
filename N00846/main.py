@@ -1,14 +1,19 @@
 import sys
+from math import floor
+from math import sqrt
 
-def solve(x, y)
-    pass
+def solve(n):
+    if n-1 < 0:
+        return str(0)
+    else:
+        return str(floor( sqrt(n-1) + sqrt(n+1) ))
 
-def main(input):
+def main(file):
     res = []
     cases = int(file.readline())
-    for _ in cases:
+    for _ in range(cases):
         x, y = [int(x) for x in file.readline().split()]
-        res.append(solve(x, y) + '\n')
+        res.append(solve(y - x) + '\n')
     return res
 
 if __name__ == '__main__':
