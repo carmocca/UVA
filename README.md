@@ -31,5 +31,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10198](./N10198) | Counting | 2 | Accepted
 | [10049](./N10049) | Self-Describing Sequence | 2 | Accepted
 | [846](./N00846) | Steps | 2 | Accepted
+| [10110](./N10110) | Light, More Light | 1 | Accepted
 
 </center>
