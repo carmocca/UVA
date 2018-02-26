@@ -29,7 +29,7 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [847](./N00847) | A Multiplication Game | 3 | Accepted
 | [10213](./N10213) | How Many Pieces of Land? | 2 | Accepted
 | [10198](./N10198) | Counting | 2 | Accepted
-| [10049](./N10049) | Self-Describing Sequence | 2 | Work in progress
+| [10049](./N10049) | Self-Describing Sequence | 2 | Accepted
 | [846](./N00846) | Steps | 2 | Accepted
 
 </center>
