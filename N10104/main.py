@@ -1,24 +1,27 @@
 import sys
 
-x = 0; y = 0; d = 0
+x, y, d = 0, 0, 0
+
 
 def solve(a, b):
     global x, y, d
     if b == 0:
-        x = 1; y = 0; d = a
+        x, y, d = 1, 0, a
     else:
-        solve(b, a%b)
+        solve(b, a % b)
         _x = x
         x = y
-        y = _x - y * (a//b)
+        y = _x - y * (a // b)
+    return x, y, d
+
 
 def main(file):
     res = []
     for line in file:
         a, b = [int(x) for x in line.split()]
-        solve(a, b)
-        res.append('{} {} {}\n'.format(int(x), int(y), int(d)))
+        res.append('{} {} {}\n'.format(*solve(a, b)))
     return res
+
 
 if __name__ == '__main__':
     print(''.join(main(sys.stdin)), end='')
