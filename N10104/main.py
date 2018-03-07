@@ -9,9 +9,7 @@ def solve(a, b):
         x, y, d = 1, 0, a
     else:
         solve(b, a % b)
-        _x = x
-        x = y
-        y = _x - y * (a // b)
+        x, y = y, x - y * (a // b)
     return x, y, d
 
 
