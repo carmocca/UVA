@@ -34,6 +34,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10110](./N10110) | Light, More Light | 1 | Accepted
 | [10104](./N10104) | Euclid Problem | 1 | Accepted
 | [861](./N00861) | Little Bishops | 2 | Accepted
-| [10128](./N10128) | Queue | 2 | Work in progress
+| [10128](./N10128) | Queue | 2 | Accepted
 
 </center>

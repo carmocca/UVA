@@ -1,6 +1,6 @@
 import unittest
 import os
-from main import main, solve
+from main import main
 
 dir = os.path.dirname(os.path.abspath(__file__))
 
