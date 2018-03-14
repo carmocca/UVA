@@ -1,24 +1,42 @@
 import sys
+import math
+
+from lib.graphs import UndirectedGraph
+from lib.graphs import minimum_spanning_tree
+
+
+def euclidean_distance(p1, p2):
+    return math.sqrt(sum([(x - y) ** 2 for x, y in zip(p1, p2)]))
 
 
 def solve(freckles):
-    pass
+    n = len(freckles)
+    graph = UndirectedGraph()
+
+    for i in range(n):
+        graph.new_node(i)
+
+    for i in range(n):
+        for j in range(i, n):
+            graph.new_edge(i, j, cost=euclidean_distance(
+                freckles[i], freckles[j]))
+
+    mst = minimum_spanning_tree(graph)
+    return sum(graph.get_edge(e_id)['cost'] for e_id in mst)
+
 
 def main(file):
     res = []
     cases = int(file.readline())
-    file.readline()
     for _ in range(cases):
-        n = int(file.readline())
-        freckles = []
-        for _ in range(n):
-            x, y = [float(x) for x in file.readline().split()]
-            freckles.append((x,y))
         file.readline()
-        res.append("{}\n".format(solve(freckles)))
-        res.append("\n")
-    return res
-
+        n = int(file.readline())
+        freckles = [tuple(float(x)
+                          for x in file.readline().split())
+                    for _ in range(n)]
+        res.append('{:0.2f}\n'.format(solve(freckles)))
+        res.append('\n')
+    return res[:-1]
 
 
 if __name__ == '__main__':
