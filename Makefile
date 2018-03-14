@@ -24,6 +24,7 @@ test:
 	python3 ./N10104/test.py
 	python3 ./N00861/test.py
 	python3 ./N10128/test.py
+	python3 ./N10034/test.py
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
