@@ -1,5 +1,8 @@
 import sys
+import os
 import math
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..')))
 
 from lib.graphs import UndirectedGraph
 from lib.graphs import minimum_spanning_tree
