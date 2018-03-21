@@ -46,13 +46,11 @@ class DirectedGraph(object):
     def new_node(self, node_id=None):
         """Adds a new, blank node to the graph.
         Returns the node id of the new node."""
-        if node_id == None:
+        if node_id is None:
             node_id = self.generate_node_id()
-
         node = {'id': node_id,
                 'edges': [],
                 'data': {}}
-
         self.nodes[node_id] = node
         self._num_nodes += 1
 
@@ -61,7 +59,6 @@ class DirectedGraph(object):
     def new_edge(self, node_a, node_b, cost=1):
         """Adds a new edge from node_a to node_b that has a cost.
         Returns the edge id of the new edge."""
-
         # Verify that both nodes exist in the graph
         try:
             self.nodes[node_a]
@@ -71,15 +68,12 @@ class DirectedGraph(object):
             self.nodes[node_b]
         except KeyError:
             raise ValueError("Second node is not in the graph")
-
         # Create the new edge
         edge_id = self.generate_edge_id()
-
         edge = {'id': edge_id,
                 'vertices': (node_a, node_b),
                 'cost': cost,
                 'data': {}}
-
         self.edges[edge_id] = edge
         self.nodes[node_a]['edges'].append(edge_id)
         self._num_edges += 1
@@ -146,15 +140,12 @@ class DirectedGraph(object):
     def delete_edge_by_id(self, edge_id):
         """Removes the edge identified by "edge_id" from the graph."""
         edge = self.get_edge(edge_id)
-
         # Remove the edge from the "from node"
         # Determine the from node
         from_node_id = edge['vertices'][0]
         from_node = self.get_node(from_node_id)
-
         # Remove the edge from it
         from_node['edges'].remove(edge_id)
-
         # Remove the edge from the edge list
         del self.edges[edge_id]
         self._num_edges -= 1
@@ -162,14 +153,12 @@ class DirectedGraph(object):
     def delete_edge_by_nodes(self, node_a, node_b):
         """Removes all the edges from node_a to node_b from the graph."""
         node = self.get_node(node_a)
-
         # Determine the edge ids
         edge_ids = []
         for e_id in node['edges']:
             edge = self.get_edge(e_id)
             if edge['vertices'][1] == node_b:
                 edge_ids.append(e_id)
-
         # Delete the edges
         for e in edge_ids:
             self.delete_edge_by_id(e)
@@ -177,34 +166,27 @@ class DirectedGraph(object):
     def delete_node(self, node_id):
         """Removes the node identified by node_id from the graph."""
         node = self.get_node(node_id)
-
         # Remove all edges from the node
         for e in node['edges']:
             self.delete_edge_by_id(e)
-
         # Remove all edges to the node
         edges = [edge_id for edge_id, edge in self.edges.items()
                  if edge['vertices'][1] == node_id]
         for e in edges:
             self.delete_edge_by_id(e)
-
         # Remove the node from the node list
         del self.nodes[node_id]
-
         self._num_nodes -= 1
 
     def move_edge_source(self, edge_id, node_a, node_b):
         """Moves an edge originating from node_a so that it originates from node_b."""
         # Grab the edge
         edge = self.get_edge(edge_id)
-
         # Alter the vertices
         edge['vertices'] = (node_b, edge['vertices'][1])
-
         # Remove the edge from node_a
         node = self.get_node(node_a)
         node['edges'].remove(edge_id)
-
         # Add the edge to node_b
         node = self.get_node(node_b)
         node['edges'].append(edge_id)
@@ -213,7 +195,6 @@ class DirectedGraph(object):
         """Moves an edge so that it targets node_a."""
         # Grab the edge
         edge = self.get_edge(edge_id)
-
         # Alter the vertices
         edge['vertices'] = (edge['vertices'][0], node_a)
 
@@ -222,7 +203,6 @@ class DirectedGraph(object):
         # Check if the nodes are adjacent
         if not self.adjacent(node_a, node_b):
             return []
-
         # They're adjacent, so pull the list of edges from node_a and determine which ones point to node_b
         node = self.get_node(node_a)
         return [edge_id for edge_id in node['edges'] if self.get_edge(edge_id)['vertices'][1] == node_b]
@@ -230,7 +210,4 @@ class DirectedGraph(object):
     def get_first_edge_id_by_node_ids(self, node_a, node_b):
         """Returns the first (and possibly only) edge connecting node_a and node_b."""
         ret = self.get_edge_ids_by_node_ids(node_a, node_b)
-        if not ret:
-            return None
-        else:
-            return ret[0]
+        return None if not ret else ret[0]

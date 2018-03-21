@@ -9,18 +9,12 @@ def minimum_spanning_tree(graph):
     Returns an empty list for an empty graph.
     """
     mst = []
-
-    if graph.num_nodes() == 0:
+    if graph.num_nodes() == 0 or graph.num_edges() == 0:
         return mst
-    if graph.num_edges() == 0:
-        return mst
-
     connected_components = get_connected_components(graph)
-    if len(connected_components) > 1:
+    if len(connected_components) < 1:
         raise ValueError('There are no connected components in this graph')
-
     edge_list = kruskal_mst(graph)
-
     return edge_list
 
 

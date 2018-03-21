@@ -38,7 +38,7 @@ clean:
 
 generate:
 	if [ -z $${FILE} ] ; then \
-    	echo "Syntax: make output FILE=<filepath>"
+    	echo "Syntax: make generate FILE=<filepath>"
 		exit
 	fi
 
