@@ -30,6 +30,7 @@ test:
 	python3 ./N10128/test.py
 	python3 ./N10034/test.py
 	python3 ./N10249/test.py
+	python3 ./N10131/test.py
 
 clean:
 	echo Cleaning...

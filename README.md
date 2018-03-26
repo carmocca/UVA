@@ -37,5 +37,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10128](./N10128) | Queue | 2 | Accepted
 | [10034](./N10034) | Freckles | 2 | Accepted
 | [10249](./N10249) | The Grand Dinner | 4 | Accepted
+| [10131](./N10131) | Is Bigger Smarter? | 2 | Work in progress
 
 </center>
