@@ -1,38 +1,30 @@
 import sys
 import collections
 
-Table = collections.namedtuple('Table', ['id', 'capacity'])
-Team = collections.namedtuple('Team', ['id', 'capacity'])
+# Team/Table
+T = collections.namedtuple('T', ['size', 'id'])
 
 
 def solve(teams, tables):
-    sorted_teams = sorted(
-        (Team(i + 1, teams[i]) for i in range(len(teams))),
-        key=lambda t: t.capacity, reverse=True)
-    sorted_tables = sorted(
-        (Table(i + 1, tables[i]) for i in range(len(tables))),
-        key=lambda t: t.capacity, reverse=True)
-    assigned_tables = []
+    teams_by_size = sorted((T(size, id + 1) for id, size in enumerate(teams)), reverse=True)
+    available_tables = sorted((T(size, id + 1) for id, size in enumerate(tables)), reverse=True)
 
-    for team in sorted_teams:
-        if team.capacity > len(sorted_tables):
-            return (0)
-        assigned_tables.append(
-            (team.id, [t.id for t in sorted_tables[:team.capacity]]))
+    team_tables = []
+    for team in teams_by_size:
+        if team.size > len(available_tables):
+            # The team doesn't fit in the available tables
+            return None
+        # Set the team's assigned tables
+        team_tables.append((team.id, [table.id for table in available_tables[:team.size]]))
+        unassigned = available_tables[team.size:]
+        # Update recently occupied tables' sizes
+        available_tables = [T(table.size - 1, table.id) for table in available_tables[:team.size]]
+        # Filter out full tables
+        available_tables = [table for table in available_tables if table.size > 0]
+        # Sort by available space again
+        available_tables = sorted(available_tables + unassigned, reverse=True)
 
-        sorted_tables = [Table(t.id, t.capacity - 1)
-                         for t in sorted_tables[:team.capacity]
-                         if t.capacity > 0] + sorted_tables[team.capacity:]
-
-        sorted_tables = sorted(sorted_tables, reverse=True)
-
-    print(sorted_teams)
-    print(sorted_tables)
-    print(assigned_tables)
-
-    print(sorted(assigned_tables))
-    print('\n')
-    return (1, *[t[1] for t in sorted(assigned_tables, reverse=True)])
+    return [t[1] for t in sorted(team_tables)]
 
 
 def main(file):
@@ -44,9 +36,12 @@ def main(file):
         teams = [int(x) for x in file.readline().split()]
         tables = [int(x) for x in file.readline().split()]
         sol = solve(teams, tables)
-        res.append('{}\n'.format(sol[0]))
-        res.extend(' '.join(map(str, x)) + '\n' for x in sol[1:])
+        res.append((0, 0) if sol is None else (1, sol))
 
 
 if __name__ == '__main__':
-    print(''.join(main(sys.stdin)), end='')
+    for valid, sol in main(sys.stdin):
+        print(valid)
+        if valid:
+            for x in sol:
+                print(' '.join(map(str, x)))
