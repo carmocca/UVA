@@ -3,35 +3,7 @@
 SHELL := /bin/bash
 
 test:
-	python3 ./N00100/test.py
-	python3 ./N10142/test.py
-	python3 ./N10189/test.py
-	python3 ./N10033/test.py
-	python3 ./N10315/test.py
-	python3 ./N10050/test.py
-	python3 ./N10044/test.py
-	python3 ./N00843/test.py
-	python3 ./N10010/test.py
-	python3 ./N00850/test.py
-	python3 ./N00120/test.py
-	python3 ./N10152/test.py
-	python3 ./N10138/test.py
-	python3 ./N10037/test.py
-	python3 ./N10026/test.py
-	python3 ./N10127/test.py
-	python3 ./N00847/test.py
-	python3 ./N10213/test.py
-	python3 ./N10198/test.py
-	python3 ./N10049/test.py
-	python3 ./N00846/test.py
-	python3 ./N10110/test.py
-	python3 ./N10104/test.py
-	python3 ./N00861/test.py
-	python3 ./N10128/test.py
-	python3 ./N10034/test.py
-	python3 ./N10249/test.py
-	python3 ./N10131/test.py
-	python3 ./N10069/test.py
+	find . -name "test.py" | xargs -n1 python3
 
 clean:
 	echo Cleaning...
@@ -84,4 +56,3 @@ generate:
 
 	# Remove the wrapper
 	rm __main__.py
-
