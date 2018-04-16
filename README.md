@@ -39,5 +39,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10249](./N10249) | The Grand Dinner | 4 | Accepted
 | [10131](./N10131) | Is Bigger Smarter? | 2 | Work in progress
 | [10069](./N10069) | Distinct Subsequences | 3 | Accepted
+| [10154](./N10154) | Weights and Measures | 3 | Work in progress
 
 </center>
