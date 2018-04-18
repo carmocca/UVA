@@ -40,6 +40,6 @@ The purpose of this repository is to solve multiple challenges for the course "A
 | [10131](./N10131) | Is Bigger Smarter? | 2 | Work in progress
 | [10069](./N10069) | Distinct Subsequences | 3 | Accepted
 | [10154](./N10154) | Weights and Measures | 3 | Accepted
-| [10003](./N10003) | Cutting Sticks | 2 | Work in progress
+| [10003](./N10003) | Cutting Sticks | 2 | Time limit exceeded
 
 </center>
