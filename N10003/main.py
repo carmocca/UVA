@@ -35,15 +35,8 @@ if __name__ == '__main__':
     print(''.join(main(sys.stdin)), end='')
 
 
-'''
-def pdp(dp):
-    for i, x in enumerate(dp):
-        print(x)
-        #print(([' ']*i) + x)
-    print()
-
-
-def solve2(cuts_input, l):
+''' Solution without empty cells
+def solve(cuts_input, l):
     cuts = [0] + cuts_input + [l]
     n = len(cuts)
     dp = [[float('inf')] * (n - i - 1) for i in range(n - 1)]
@@ -53,25 +46,13 @@ def solve2(cuts_input, l):
 
     for col in range(1, n - 1):
         for row in range(n - col - 1):
-
-            print('col={}, row={}'.format(col, row))
-            aux, dp[row][col] = dp[row][col], 'X'
-            pdp(dp)
-            dp[row][col] = aux
-
-            x = sum(dp[row][0:col])
-            min_ = min(x + dp[col + row - k][k] for k in range(col))
-            print(x, min_, dp[row][col])
-            #print('x:', x)
-            #for k in range(col):
-            #    x += dp[col + row - k][k]
-            #print('x:', x)   
+            horizontal = dp[row][:col]
+            # TODO: generate the list already reversed
+            vertical = [dp[col + row - k][k] for k in range(col)]
+            min_ = min(map(sum, zip(horizontal, reversed(vertical))))
             if dp[row][col] > min_:
                 dp[row][col] = min_
-            #print(cuts, col, row)
             dp[row][col] += cuts[col + row + 1] - cuts[row]
 
-    print('End')
-    pdp(dp)
     return dp[0][n - 2]
 '''
